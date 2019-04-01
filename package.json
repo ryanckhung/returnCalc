@@ -1,0 +1,18 @@
+{
+  "name": "returncalc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^24.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "jest":{
+    "testEnvironment":"node"
+  },
+  "author": "",
+  "license": "ISC"
+}
