@@ -35,10 +35,10 @@ describe('FinaCalc', ()=>{
             let x = N-M+1;
             var calcFV = 0
             for (var i=x; i<=N; i++){
-                console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
+                //console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
                 calcFV = PV*((1+rate)**i) + calcFV
             }
-            console.log(`------ rate: ${rate} -------`)
+            //console.log(`------ rate: ${rate} -------`)
             expect(FV.toFixed(0)).toEqual(calcFV.toFixed(0));
          })
     });
@@ -60,10 +60,10 @@ describe('FinaCalc', ()=>{
             let x = N-M+1;
             var calcFV = 0
             for (var i=x; i<=N; i++){
-                console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
+                //console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
                 calcFV = PV*((1+rate)**i) + calcFV
             }
-            console.log(`------ rate: ${rate} FV: ${calcFV}-------`)
+            //console.log(`------ rate: ${rate} FV: ${calcFV}-------`)
             expect(FV.toFixed(0)).toEqual(calcFV.toFixed(0));
          })
     });
@@ -77,11 +77,11 @@ describe('FinaCalc', ()=>{
             let x = N-M+1;
             var calcFV = 0
             for (var i=x; i<=N; i++){
-                console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
+                //console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
                 calcFV = PV*((1+rate)**i) + calcFV
             }
             let errRate = Math.abs((calcFV-FV)/FV)
-            console.log(`------ rate: ${rate}; FV: ${calcFV}; ErrRate: ${errRate}-------`)
+            //console.log(`------ rate: ${rate}; FV: ${calcFV}; ErrRate: ${errRate}-------`)
             //expect(FV.toFixed(0)).toEqual(calcFV.toFixed(0));
             expect(errRate).toBeLessThan(0.001)
          })
@@ -95,11 +95,11 @@ describe('FinaCalc', ()=>{
             let x = N-M+1;
             var calcFV = 0
             for (var i=x; i<=N; i++){
-                console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
+                //console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
                 calcFV = PV*((1+rate)**i) + calcFV
             }
             let errRate = Math.abs((calcFV-FV)/FV)
-            console.log(`------ rate: ${rate}; FV: ${calcFV}; ErrRate: ${errRate}-------`)
+            //console.log(`------ rate: ${rate}; FV: ${calcFV}; ErrRate: ${errRate}-------`)
             //expect(FV.toFixed(0)).toEqual(calcFV.toFixed(0));
             expect(errRate).toBeLessThan(0.001)
          })
@@ -114,11 +114,29 @@ describe('FinaCalc', ()=>{
             let x = N-M+1;
             var calcFV = 0
             for (var i=x; i<=N; i++){
-                console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
+                //console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
                 calcFV = PV*((1+rate)**i) + calcFV
             }
             let errRate = Math.abs((calcFV-FV)/FV)
-            console.log(`------ rate: ${rate}; FV: ${calcFV}; ErrRate: ${errRate}-------`)
+            //console.log(`------ rate: ${rate}; FV: ${calcFV}; ErrRate: ${errRate}-------`)
+            //expect(FV.toFixed(0)).toEqual(calcFV.toFixed(0));
+            expect(errRate).toBeLessThan(0.001)
+         })
+    });
+
+    describe('General Test 3', function(){
+        let N = 6, M = 5, PV = 2048, FV = 6690206
+        let finaCalc = new FinaCalc(N,M,PV,FV)
+        it('FV must be large than PV',async  function(){
+            let rate = await finaCalc.averageRate();
+            let x = N-M+1;
+            var calcFV = 0
+            for (var i=x; i<=N; i++){
+                //console.log(`${PV}*((1+${rate})**${i}) + ${calcFV}`)
+                calcFV = PV*((1+rate)**i) + calcFV
+            }
+            let errRate = Math.abs((calcFV-FV)/FV)
+            //console.log(`------ rate: ${rate}; FV: ${calcFV}; ErrRate: ${errRate}-------`)
             //expect(FV.toFixed(0)).toEqual(calcFV.toFixed(0));
             expect(errRate).toBeLessThan(0.001)
          })

@@ -10,8 +10,8 @@
   "scripts": {
     "test": "jest --watchAll"
   },
-  "jest":{
-    "testEnvironment":"node"
+  "jest": {
+    "testEnvironment": "node"
   },
   "author": "",
   "license": "ISC"

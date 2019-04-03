@@ -14,7 +14,6 @@ class FinaCalc{
         this.M = M;
         this.PV = PV;
         this.FV = FV;
-        this.rateStep = 0.0000001;
     }
 
     toString(){
@@ -22,6 +21,27 @@ class FinaCalc{
         console.log(`M: ${this.M}`);
         console.log(`PV: ${this.PV}`);
         console.log(`FV: ${this.FV}`);
+    }
+
+
+    _rounding(value){
+        return Math.round((value)*10000000)/10000000;
+    }
+
+
+    _rate(initialRate, step){
+        var rate = initialRate;
+        var calcFV = 0;
+
+        while(calcFV<this.FV){
+            calcFV = 0;
+            var x = this.N - this.M + 1;
+            for (var i=x; i<=this.N; i++){
+                calcFV = this.PV*((1+rate)**i) + calcFV
+            }
+            rate = this._rounding(rate + step);
+        }
+        return this._rounding(rate - step)
     }
 
     averageRate(){
@@ -32,20 +52,11 @@ class FinaCalc{
             return null
         }
 
-        var rate = this.rateStep;
-        var calcFV = 0;
+        // find the rough rate with larger step can speed up the calculation
+        // instead of using small step
+        let roughRate = this._rounding(this._rate(0, 0.01) - 0.01)
+        return this._rate(roughRate, 0.0000001);
 
-        while(calcFV<this.FV){
-            calcFV = 0;
-            var x = this.N - this.M + 1;
-            for (var i=x; i<=this.N; i++){
-                calcFV = this.PV*((1+rate)**i) + calcFV
-            }
-            rate = Math.round((rate + this.rateStep)*10000000)/10000000;
-        }
-
-
-        return Math.round((rate-this.rateStep)*10000000)/10000000;
     }
 
 }
