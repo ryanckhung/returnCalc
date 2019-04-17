@@ -59,6 +59,30 @@ class FinaCalc{
 
     }
 
+    static futureValueList(numOfInstallment, capticalPerInstallment, rate, investmentLength){
+        let n = numOfInstallment;
+        let C =capticalPerInstallment;
+        let r = rate;
+        var returnInEachYear = [];
+        var futureValue=0;
+
+        for (var year=1; year<=investmentLength; year++){
+            if (year < n){
+                futureValue = 0;
+                for (var i=1; i<= year; i++){
+                    futureValue = futureValue + Math.pow((1+r),i);
+                }
+            }else{
+                futureValue = 0;
+                for (var i=0; i<=n-1; i++){
+                    futureValue = futureValue + Math.pow((1+r),(year-i));
+                }
+            }
+            returnInEachYear.push(futureValue*C)
+        }
+        return returnInEachYear;
+    }
+
 }
 
 module.exports = FinaCalc

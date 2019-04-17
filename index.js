@@ -46,3 +46,6 @@ console.log("A - EGSP2")
 N = 100; M = 5; PV = 2560; FV = 5973736;
 finaCalc = new FinaCalc(N,M,PV,FV)
 console.log(finaCalc.averageRate());
+
+console.log("-------------------------------")
+console.log(FinaCalc.futureValueList(5,100,0.05,20))
